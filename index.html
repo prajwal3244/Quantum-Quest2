@@ -3,15 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Quest - 24Hrs HACKATHON</title>
+    <title>Quantum Quest - 24HR HACKATHON</title>
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Genos:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Header Styles */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background-color: rgba(10, 0, 20, 0.6); /* Semi-transparent background */
+            border-bottom: 2px solid #ffc800;
+            width: 100%;
+            box-sizing: border-box;
+            gap: 20px;
+        }
+
+        .header-logo {
+            height: 110px; /* Control logo size */
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .circular-logo {
+            border-radius: 50%; /* Makes the AIML logo round */
+        }
+
+        .college-info {
+            text-align: center;
+            color: #fff;
+        }
+
+        .college-info h1 {
+            font-family: 'Genos', sans-serif;
+            font-size: 26px;
+            color: #ffb700;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .college-info h2 {
+            font-family: 'Genos', sans-serif;
+            font-size: 22px;
+            color: #ff6a00;
+            margin: 8px 0 0 0;
+            font-weight: 400;
+        }
+
+        .college-info p {
+            font-family: 'Genos', sans-serif;
+            font-size: 13px;
+            margin: 5px 0;
+            color: antiquewhite;
+            font-weight: 300;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'genos', cursive;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .container {
+            position: relative; /* Ensure container is above the video */
+            z-index: 1;
+            min-height: 100vh;
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Title Glitch Effect */
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #ff0000, -2px -2px #00aaff; }
+            50% { text-shadow: -2px -2px #ff0000, 2px 2px #00aaff; }
+            100% { text-shadow: 2px 2px #ff0000, -2px -2px #00aaff; }
+        }
+
+        .title {
+            font-family: 'new rocker', cursive;
+            font-size: 80px;
+            font-weight: bold;
+            color: #ffb700;
+            animation: glitch 0.5s infinite alternate;
+        }
+
+        .subtitle {
+            font-family: 'new rocker', Courier, monospace;
+            display: block;
+            font-size: 30px;
+            margin-top: -10px;
+            color: #ff6a00;
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            font-size: 25px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff5500;
+            padding-bottom: 5px;
+            width: fit-content;
+            margin: auto;
+        }
+
+        .white {
+            color: antiquewhite;
+        }
+
+        .content-box {
+            background-color: rgba(255, 115, 0, 0.212);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #ffc800;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-top: 10px;
+            width: calc(100% - 40px);
+            text-align: left;
+            color: antiquewhite;
+        }
+
+        /* Glitch Animation for Links */
+        @keyframes glitchHover {
+            0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+            50% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+            100% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+        }
+
+        .link {
+            font-size: 16px;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 8px;
+            display: inline-block;
+            border: 2px solid #ffc800;
+            color: #fcc;
+            box-shadow: 0px 0px 10px #ffb300;
+            transition: 0.3s;
+        }
+
+        .link:hover {
+            animation: glitchHover 0.3s infinite alternate;
+            background-color: #fffb00;
+            color: #000;
+            transform: scale(1.1);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        /* Sections Hover Effect */
+        .section:hover {
+            transform: scale(1.05);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        /* Content Box Hover Effect */
+        .content-box:hover {
+            transform: scale(1.05);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Image Styles */
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .hackathon-logo {
+            width: 250px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hackathon-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .qr-code {
+            width: 150px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border: 5px solid #ffc800;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #ffb300;
+        }
+
+        .warning {
+            color: yellow;
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            font-size: 16px;
+            text-align: center;
+            color: #ff6a00;
+            margin-top: 50px;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .con {
+            width: 25%;
+        }
+
+        /* ===== UPDATED DEVELOPER CREDIT STYLES ===== */
+        .developer-credit {
+            margin-top: 30px; /* Added space above */
+            font-size: 14px;
+            color: antiquewhite;
+            
+            /* Border and Box styling */
+            display: inline-block; /* Makes the border wrap the text instead of full-width */
+            padding: 10px 20px; /* Space inside the border */
+            border: 1px solid #ff6a00; /* Thematic border color */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px #ff6a00; /* Neon glow effect */
+            
+            /* Smooth transition for hover effect */
+            transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease;
+        }
+
+        .developer-credit:hover {
+            box-shadow: 0 0 20px #ffc800, 0 0 30px #ffc800 inset; /* Brighter glow on hover + inner glow */
+            color: #fff;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 850px) {
+            .header-container {
+                flex-direction: column; /* Stack items vertically on smaller screens */
+                padding: 10px;
+            }
+            .header-logo {
+                height: 80px;
+                margin-bottom: 10px;
+            }
+            .college-info h1 {
+                font-size: 20px;
+            }
+            .college-info h2 {
+                font-size: 18px;
+            }
+            .college-info p {
+                font-size: 11px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <video id="bgVideo" autoplay muted></video>
+    <header class="header-container">
+        <img src="cbitlogo.jpeg" alt="CBIT College Logo" class="header-logo">
+        <div class="college-info">
+            <h1>C BYREGOWDA INSTITUTE OF TECHNOLOGY</h1>
+            <p>(Affiliated to Visvesvaraya Technological University, Belagavi, Approved by AICTE, New Delhi & Recognized by Govt of Karnataka)</p>
+            <p>ACCREDITED BY NAAC FIRST CYCLE WITH “B++” GRADE & ISO 9001:2015 CERTIFIED INSTITUTE</p>
+            <h2>DEPARTMENT OF ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING</h2>
+        </div>
+        <img src="aiml logo.jpg" alt="AIML Department Logo" class="header-logo circular-logo">
+    </header>
+    <video id="bgVideo" autoplay muted loop></video>
     <div class="container">
         <div class="logo-container">
-            <img src="image2.jpg" alt="Quantum Quest Logo" class="hackathon-logo">
+            <img src="image23.jpg" alt="Quantum Quest Logo" class="hackathon-logo">
         </div>
         <h1 class="title">
             Quantum Quest
@@ -33,7 +323,7 @@
         <section class="section">
             <h2 class="section-title">How does it go?</h2>
             <div class="content-box">
-                <h3><center><strong>Conduction Of Hackthon</strong></center></h3>
+                <h3><center><strong>Conduction Of Hackathon</strong></center></h3>
                 <p>
                     <ul>
                         <li>Participants are expected to choose one domain.</li>
@@ -55,7 +345,7 @@
                 <center>🎥 <b>Media & Content</b><br></center>
                 <center>🎮<b>Gaming</b><br></center>
                 <center>🌿<b>AgriTech</b><br></center>
-                <br><center><b>NOTE:</b> Problem statements will be provided on spot.</center></p>
+                <br><center><b>NOTE:</b> Problem statements will be provided on spot.</center>
             </div>
         </section>
 
@@ -79,7 +369,7 @@
                 📶 <b>WiFi:</b> Internet connectivity and power supply.</p>
             </div>
         </section>
-            
+                
         <section class="section">
             <h2 class="section-title">📝 Rules & Regulations</h2>
             <div class="content-box">
@@ -96,17 +386,17 @@
             <div class="content-box">
                 <p>🕒 <b>Start Time:</b> October 16, 10:30 AM<br>
                 🕛 <b>End Time:</b> October 17, 12:00 PM<br>
-                🏆 <b>Winner Announcement:</b> October 17 , 2:00 PM</p>
+                🏆 <b>Winner Announcement:</b> October 17, 2:00 PM</p>
             </div>
         </section>
 
         <section class="section">
             <h2 class="section-title">🏆 Prizes & Registration</h2>
             <div class="content-box">
-                <p>💰 <b> Prize Pool:</b> Cash Prize+ Internship Oppurtunities+ Attractive Trophies<br>
+                <p>💰 <b> Prize Pool:</b> Cash Prize + Internship Opportunities + Attractive Trophies<br>
                 
                 <img src="image3.jpg" alt="Registration QR Code" class="qr-code">
-                <p>Scan for Registration</p>
+                <p style="text-align:center;">Scan for Registration</p>
                 
                 🎟️ <b>Entry Fee:</b> ₹699 per team</p>
             </div>
@@ -117,7 +407,7 @@
             <div class="content-box">
                 <p>Connect with other participants, mentors, and the organizing team.</p>
                 <img src="image4.jpg" alt="WhatsApp Group QR Code" class="qr-code">
-                <p>Scan to join the WhatsApp group</p>
+                <p style="text-align:center;">Scan to join the WhatsApp group</p>
             </div>
         </section>
 
@@ -132,9 +422,10 @@
             <div class="contact">
                 <h2 class="section-title">Contact Us</h2>
                 <a href="mailto:quantumquest25hack@gmail.com" class="link con">📧 quantumquest25hack@gmail.com</a>
-                <a href="tel:+919591740602" class="link con"> PRAJWAL HD -9591740602</a>
-                <a href="tel:+917795445440" class="link con">ANUSHA S -7795445440 </a>
+                <a href="tel:+919591740602" class="link con"> PRAJWAL HD - 9591740602</a>
+                <a href="tel:+917795445440" class="link con">ANUSHA S - 7795445440 </a>
             </div>
+            <p class="developer-credit">Developed with passion By Prajwal H D © 2025</p>
         </footer>
     </div>
 
@@ -155,203 +446,17 @@
         });
 
         const video = document.getElementById("bgVideo");
-
-        // List of video files
-        const videos = ["vid2.mp4"];
+        const videos = ["vid2.mp4"]; // You can add more video files here, e.g., ["vid1.mp4", "vid2.mp4"]
         let currentVideo = 0;
 
-        // Function to play the next video
         function playNextVideo() {
-            currentVideo = (currentVideo + 1) % videos.length; // Loop through videos
-            video.src = videos[currentVideo]; // Set new video source
-            video.play(); // Start playing
+            currentVideo = (currentVideo + 1) % videos.length;
+            video.src = videos[currentVideo];
+            video.play();
         }
 
-        // Set the first video and add event listener
         video.src = videos[currentVideo];
         video.addEventListener("ended", playNextVideo);
     </script>
 </body>
 </html>
-<style>
-    /* Global Styles */
-    body{
-        font-family: 'genos', cursive;
-        background-color: #000;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
-
-    #bgVideo {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -1;
-    }
-
-    .container {
-        min-height: 100vh;
-        width: 90%;
-        max-width: 800px;
-        margin: auto;
-        padding: 20px;
-        text-align: center;
-    }
-
-    /* Title Glitch Effect */
-    @keyframes glitch {
-        0% { text-shadow: 2px 2px #ff0000, -2px -2px #00aaff; }
-        50% { text-shadow: -2px -2px #ff0000, 2px 2px #00aaff; }
-        100% { text-shadow: 2px 2px #ff0000, -2px -2px #00aaff; }
-    }
-
-    .title {
-        font-family: 'new rocker', cursive;
-        font-size: 80px;
-        font-weight: bold;
-        color: #ffb700;
-        animation: glitch 0.5s infinite alternate;
-    }
-
-    .subtitle {
-        font-family: 'new rocker', Courier, monospace;
-        display: block;
-        font-size: 30px;
-        margin-top: -10px;
-        color: #ff6a00;
-    }
-
-    .section {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        font-size: 25px;
-        line-height: 1.6;
-        margin-bottom: 40px;
-    }
-
-    .section.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .section-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #ff5500;
-        padding-bottom: 5px;
-        width: fit-content;
-        margin: auto;
-    }
-
-    .white{
-        color: antiquewhite;
-    }
-
-    .content-box {
-        background-color: rgba(255, 115, 0, 0.212);
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 15px #ffc800;
-        font-size: 17px;
-        line-height: 1.8;
-        margin-top: 10px;
-        width: calc(100% - 40px);
-        text-align: left;
-        color: antiquewhite;
-    }
-
-    /* Glitch Animation for Links */
-    @keyframes glitchHover {
-        0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
-        50% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
-        100% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
-    }
-
-    .link {
-        font-size: 16px;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        margin: 8px;
-        display: inline-block;
-        border: 2px solid #ffc800;
-        color: #fcc;
-        box-shadow: 0px 0px 10px #ffb300;
-        transition: 0.3s;
-    }
-
-    .link:hover {
-        animation: glitchHover 0.3s infinite alternate;
-        background-color: #fffb00;
-        color: #000;
-        transform: scale(1.1);
-        transition: transform 0.4s ease-in-out;
-    }
-
-    /* Sections Hover Effect */
-    .section:hover {
-        transform: scale(1.05);
-        transition: transform 0.4s ease-in-out;
-    }
-
-    /* Content Box Hover Effect */
-    .content-box:hover {
-        transform: scale(1.05);
-        transition: transform 0.5s ease-in-out;
-    }
-
-    /* Image Styles */
-    .logo-container {
-        margin-bottom: 20px;
-    }
-
-    .hackathon-logo {
-        width: 250px;
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .hackathon-logo:hover {
-        transform: scale(1.05);
-    }
-
-    .qr-code {
-        width: 150px;
-        height: auto;
-        margin: 20px auto;
-        display: block;
-        border: 5px solid #ffc800;
-        border-radius: 10px;
-        box-shadow: 0 0 15px #ffb300;
-    }
-
-    .warning {
-        color: yellow;
-        font-size: 16px;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-
-    footer {
-        font-size: 16px;
-        text-align: center;
-        color: #ff6a00;
-        margin-top: 50px;
-    }
-
-    .contact {
-        text-align: center;
-    }
-
-    .con {
-        width: 25%;
-    }
-</style>
